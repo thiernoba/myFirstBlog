@@ -1,0 +1,13 @@
+{% extends "layout.html"%}
+
+{%block content%}
+
+    {%for t in info%}
+
+        <h1>{{t.title}}</h1>
+        <p>posted by {{t.author}} on {{t.date_posted}} from home</p>
+        <p>{{t.content}}</p>
+
+    {% endfor %}
+
+{%endblock content%}
