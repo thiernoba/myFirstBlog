@@ -19,14 +19,18 @@ posts = [
         'author':'thierno bah',
         'title': 'blog Post 1',
         'content':'First Post Content',
-        'date_posted':'25 oct 2020'
+        'date_posted':'25 oct 2020',
+        'subject':'sport',
+        'generation': 'adult'
 
     },
     {
         'author':'Salimatou Sall',
         'title': 'blog Post 2',
         'content':'Second Post Content',
-        'date_posted':'24 oct 2020'
+        'date_posted':'24 oct 2020',
+        'subject':'culture',
+        'generation':'Young'
 
     }
 ]

@@ -1,13 +1,23 @@
 {% extends "layout.html"%}
 
-{%block content%}
+{% block content %}
+    {%for post in info%}
 
-    {%for t in info%}
+    <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">this is posted by {{ post.author }}</a>
+            <small class="text-muted">{{ post.date_posted }}</small>
+          </div>
+          <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+          <p class="article-content">{{ post.content }}</p>
+          <p class="article-content">{{ post.generation.title() }}</p>
+          <p {class="number">{{ post.keys() }}}</p>
+          <p {class="number">{{ post.values() }}}</p>
+          <small class="text-muted"> concern by {{post.subject}}</small>
+        </div>
+      </article>
+    {%endfor%}
+{% endblock content%}
 
-        <h1>{{t.title}}</h1>
-        <p>posted by {{t.author}} on {{t.date_posted}} from home</p>
-        <p>{{t.content}}</p>
 
-    {% endfor %}
-
-{%endblock content%}
