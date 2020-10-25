@@ -1,7 +1,7 @@
 ### this is my first application using Flask ####
 #first of all we need to install some packages
 
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect, message_flashed, make_response
 from flask_restful import Resource, Api, reqparse, fields, marshal_with
 import requests
 from form import RegistrationForm, LoginForm
@@ -34,7 +34,7 @@ posts = [
 #creating a route
 
 @app.route("/")
-@app.route("/home")
+#@app.route("/home")
 def home():
     return render_template('home.html', auteurs=posts)
 
@@ -47,15 +47,24 @@ def about():
     return render_template('About.html', info=posts, title="blog thierno")
 
 # route for register Page
-@app.route("/register")
+@app.route("/register", methods=['GET','POST'] )
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'account created for {form.username.data} !!','success!')
+        return redirect (url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
 #route for the login page 
-@app.route("/login")
+@app.route("/login", methods=['POST', 'GET'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'oumirba@gmail.com' and form.password.data =='Salima':
+            flash('you have been connected in', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('try again something is wrong', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 
